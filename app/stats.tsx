@@ -43,8 +43,8 @@ export default async function Stats() {
                             <Text>Message</Text>
                         </Flex>
                         <Flex className="mt-6">
-                            <Text>Pages</Text>
-                            <Text className="text-right">Views</Text>
+                            <Text>Message type</Text>
+                            <Text className="text-right">Count</Text>
                         </Flex>
                         <BarList
                             data={[
