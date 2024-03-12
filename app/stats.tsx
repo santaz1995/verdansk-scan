@@ -1,5 +1,12 @@
-import { sql } from '@vercel/postgres';
 import { Card, Metric, Text, Title, BarList, Flex, Grid, AreaChart } from '@tremor/react';
+
+interface Stat {
+    id: number;
+    userId: string;
+    userName: string;
+    normalMessageCount: number;
+    questionMessageCount: number;
+}
 
 const data = [
     {
@@ -19,15 +26,12 @@ const data = [
     }
 ];
 
-export default async  function Stats() {
-    const result = await sql`
-        SELECT * FROM app;
-    `;
-    console.log(result.rows);
+export default async function Stats() {
+    const result = await (await fetch('https://verdansk-telegram-scan-api.vercel.app/stat')).json() as Stat[];
     return (
         <main>
             <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
-                {result.rows.map((item) => (
+                {result.map((item) => (
                     <Card key={item.userId}>
                         <Title>{item.userName}</Title>
                         <Flex
