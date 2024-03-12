@@ -19,9 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full bg-gray-50">
       <body className="h-full">
-        <Suspense>
-          <Nav />
-        </Suspense>
         {children}
         <Analytics />
         <Toast />
