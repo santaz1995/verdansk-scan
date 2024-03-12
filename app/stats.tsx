@@ -20,7 +20,9 @@ const data = [
 ];
 
 export default async  function Stats() {
-    const result = await sql`SELECT * FROM app`;
+    const result = await sql`
+        SELECT * FROM app;
+    `;
     console.log(result.rows);
     return (
         <main>
@@ -51,21 +53,21 @@ export default async  function Stats() {
                     </Card>
                     ))}
             </Grid>
-            <Card className="mt-8">
-                <Title>Scan the chat for Leo`s questions and bullying</Title>
-                <Text>Leo`s questions and bullying</Text>
-                <AreaChart
-                    className="mt-4 h-80"
-                    data={data}
-                    categories={['Sales', 'Profit']}
-                    index="Month"
-                    colors={['indigo', 'fuchsia']}
-                    valueFormatter={(number: number) =>
-                  `$ ${Intl.NumberFormat('us').format(number).toString()}`
-                }
-                    yAxisWidth={60}
-                />
-            </Card>
+            {/*<Card className="mt-8">*/}
+            {/*    <Title>Scan the chat for Leo`s questions and bullying</Title>*/}
+            {/*    <Text>Leo`s questions and bullying</Text>*/}
+            {/*    <AreaChart*/}
+            {/*        className="mt-4 h-80"*/}
+            {/*        data={data}*/}
+            {/*        categories={['Sales', 'Profit']}*/}
+            {/*        index="Month"*/}
+            {/*        colors={['indigo', 'fuchsia']}*/}
+            {/*        valueFormatter={(number: number) =>*/}
+            {/*      `$ ${Intl.NumberFormat('us').format(number).toString()}`*/}
+            {/*    }*/}
+            {/*        yAxisWidth={60}*/}
+            {/*    />*/}
+            {/*</Card>*/}
         </main>
         );
 }
