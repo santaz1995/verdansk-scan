@@ -13,7 +13,7 @@ export default async function Stats() {
     const [postsData, setPostsData] = useState([]);
 
     function fetchData() {
-        fetch('http://localhost:3005/stat')
+        fetch('https://verdansk-telegram-scan-api.vercel.app/stat')
           .then(response => {
               response.json().then((data) => {
                 setPostsData(data);
