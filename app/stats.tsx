@@ -1,4 +1,5 @@
-import { Card, Metric, Text, Title, BarList, Flex, Grid, AreaChart } from '@tremor/react';
+import { Card, Metric, Text, Title, BarList, Flex, Grid } from '@tremor/react';
+import { useEffect, useState } from 'react';
 
 interface Stat {
     id: number;
@@ -8,30 +9,25 @@ interface Stat {
     questionMessageCount: number;
 }
 
-const data = [
-    {
-        Month: 'Jan 21',
-        Sales: 2890,
-        Profit: 2400
-    },
-    {
-        Month: 'Feb 21',
-        Sales: 1890,
-        Profit: 1398
-    },
-    {
-        Month: 'Jan 22',
-        Sales: 3890,
-        Profit: 2980
-    }
-];
-
 export default async function Stats() {
-    const result = await (await fetch('https://verdansk-telegram-scan-api.vercel.app/stat')).json() as Stat[];
+    const [postsData, setPostsData] = useState([]);
+
+    function fetchData() {
+        fetch('http://localhost:3005/stat')
+          .then(response => {
+              response.json().then((data) => {
+                setPostsData(data);
+              })
+          })
+          .catch(error => console.log(error));
+    }
+    useEffect(() => {
+        fetchData();
+    }, []);
     return (
         <main>
             <Grid numItemsSm={2} numItemsLg={3} className="gap-6">
-                {result.map((item) => (
+                {postsData.map((item: Stat) => (
                     <Card key={item.userId}>
                         <Title>{item.userName}</Title>
                         <Flex
